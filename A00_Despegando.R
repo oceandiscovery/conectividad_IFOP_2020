@@ -19,29 +19,29 @@ names (motorcars)
 
 # Resumen de los datos
 summary(motorcars)
-# Este comando muestra: valor minimo, 1r y 3r cuantil, mediana, media, y valor maximo 
+# Este comando muestra: valor mínimo, 1r y 3r cuartil, mediana, media, y valor máximo 
 
 mean (motorcars$mpg) # media
-sd (motorcars$mpg) # Desviacion estandard
-min (motorcars$mpg) # valor minimo
-max (motorcars$mpg) # valor maximo
+sd (motorcars$mpg) # Desviación estandar
+min (motorcars$mpg) # valor mínimo
+max (motorcars$mpg) # valor máximo
 median (motorcars$mpg) # mediana
 range (motorcars$mpg) # Rango (min, max)
-quantile (motorcars$mpg) # cuantiles
+quantile (motorcars$mpg) # cuartiles
 var(motorcars$mpg)
 
 cor(motorcars$mpg,motorcars$hp, method = "spearman")
 
-#### Grafico de dispersion con lineas de tendencia ####
+#### Gráfico de dispersión con lineas de tendencia ####
 plot(x = motorcars$mpg, y = motorcars$hp, main = "Fuerza vs. MPG", xlab = "Caballos de fuerza", ylab = "Millas por Galón")
 # Un gráfico sencillo para visualizar dos variables con posible relación
 
 # Un modelo lineal para probar la hipótesis nula de la dependencia de los caballos de fuerza de un motor y el consumo medio por milla recorrida
 modelo.lineal.1 <- lm(formula = mpg ~ hp, data = motorcars)
 summary(modelo.lineal.1)
-# Caracteristicas del modelo, con estos datos se puede escribir la formula y ver el R cuadrado
+# Características del modelo, con estos datos se puede escribir la formula y ver el R cuadrado
 
-# Recordando que una anova es un tipo de modelo lineal
+# Recordando que un anova es un tipo de modelo lineal
 anova.1 <- aov(formula = mpg ~ hp, data = motorcars, projections = TRUE, qr = TRUE)
 anova.1
 summary(anova.1)
@@ -61,7 +61,7 @@ hist(motorcars$mpg, main = "MPG", xlab = "Millas por Galón")
 hist(motorcars$hp, main = "Caballos de fuerza", xlab = "Caballos de fuerza")
 plot(x = motorcars$mpg, y = motorcars$hp, main = "Fuerza vs. MPG", xlab = "Caballos de fuerza", ylab = "Millas por Galón")
 
-# Cómo cargar librerias?
+# Cómo cargar librerías?
 library(plyr)
 # Usemos plyr para agrupar y manipular los datos originales 
 ddply(motorcars, .(cyl, gear), summarise, mean = mean(mpg),se = sd(mpg) / sqrt(length(mpg))) 
@@ -89,7 +89,7 @@ new.data <- motorcars %>% group_by(cyl, gear) %>% summarise(mean = mean(mpg),
 
 # verificando que tipo de objeto es:
 class(new.data)
-# convirtiendo a un uevo tio de objeto:
+# convirtiendo a un nuevo tipo de objeto:
 new.data <- as.data.frame(new.data)
 class(new.data)
 
@@ -109,14 +109,14 @@ ggplot(new.data, aes(x=factor(gear), y= mean , fill = factor(cyl))) +
 
 
 
-#### Instalando paquetes o librerias nuevas
+#### Instalando paquetes o librerías nuevas
 # install.packages("corrplot")
 
 # Usando corrplot para hacer una matriz de correlaciones
 library(corrplot)
 
 mcor <- cor(motorcars[2:12])
-# Print mcor and round to 2 digits
+# Mostrar mcor y redondear a 2 dígitos
 round(mcor, digits=2)
 
 library(corrplot)

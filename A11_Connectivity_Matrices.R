@@ -27,7 +27,7 @@ colSums(cmat.pot)
 image(cmat.pot)
 
 # También podemos cambiar a una paleta de colores que sea mas de nuestro agrado.
-# La librería RColorBrewer tiene una serie de paletas secuenciales muy utiles
+# La librería RColorBrewer tiene una serie de paletas secuenciales muy útiles
 library(RColorBrewer)
 display.brewer.all(type="seq")
 
@@ -50,7 +50,7 @@ image.plot(t(cmat.pot), xlab = "Origen",
 axis(1,seq(0,1,length.out = 5),1:5)
 axis(2,seq(0,1,length.out = 5),1:5)
 
-# Y ahora hagamos una figura de la matriz realizada, pero cambiemos las etiquetas a un codigo alfabético
+# Y ahora hagamos una figura de la matriz realizada, pero cambiemos las etiquetas a un código alfabético
 image.plot(t(cmat.rea), xlab = "Origen", 
            col = hcl.colors(10, "YlGn", rev = TRUE),
            ylab = "Destination",
@@ -61,14 +61,14 @@ axis(1,seq(0,1,length.out = 5),LETTERS[1:5])
 axis(2,seq(0,1,length.out = 5),LETTERS[1:5])
 
 # Es fácil y han quedado bastante bien las figuras de nuestras matrices, pero tenemos una librería que permite mucho mas control de los elementos de las figuras. Esta es ggplot2.
-# También usaremos algunas otras librerías para asegurarnos un resultado optimo.
+# También usaremos algunas otras librerías para asegurarnos un resultado óptimo.
 
 library(ggplot2)
 library(reshape2)
 library(hrbrthemes)
 library(ggExtra)
 
-# Aquí creamos el objeto gráfico básico, es decir, especificamos los atos a usar y damos un par de instrucciones para la leyenda y los títulos de los ejes.
+# Aquí creamos el objeto gráfico básico, es decir, especificamos los datos a usar y damos un par de instrucciones para la leyenda y los títulos de los ejes.
 pm <- ggplot(melt(t(cmat.pot)), aes(Var1,Var2, fill=value)) +
   # scale_x_reverse() +
   # scale_y_reverse() +

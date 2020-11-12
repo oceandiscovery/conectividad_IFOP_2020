@@ -7,7 +7,7 @@
 
 # Título: Núcleos de dispersión, manejo y representación gráfica.
 
-# Vamos a establecer una semilla del generador de numeros aleatorios que nos permitirá reproducibilidad cuando trabajemos con simulaciones.
+# Vamos a establecer una semilla del generador de números aleatorios que nos permitirá reproducibilidad cuando trabajemos con simulaciones.
 set.seed(1234)
 
 # En la siguiente línea vamos a crear el objeto data.sim que simula ser un conjunto de datos con 400 entradas, con una distribución normal, una media de 400 y desviación estandar de 12.
@@ -98,7 +98,7 @@ ggplot(df, aes(distance, colour = spp, fill = spp)) +
   scale_x_continuous(breaks = seq(from = 0, to = 80, by = 10)) +
   theme_bw()
 
-# He dejado el eje secundario fuera de la figura anterior a propósito, solo para que podais comparar las dos instruciones y poder entender un poco mejor el código necesario para obtener ese segundo eje.
+# He dejado el eje secundario fuera de la figura anterior a propósito, solo para que podáis comparar las dos instrucciones y poder entender un poco mejor el código necesario para obtener ese segundo eje.
 
 # Comparando el kernel de dispersión para loco y lapa
 ggplot(df, aes(distance, colour = spp, fill = spp)) +
