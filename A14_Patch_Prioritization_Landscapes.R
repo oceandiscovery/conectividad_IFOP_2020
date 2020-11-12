@@ -10,7 +10,7 @@
 # Objetivo: Derivar la contribución de cada parche individual a la conectividad general del paisaje.
 
 
-# La gran mayoría de las veces los parches de hábitat en un paisaje no se pueden representar como áreas circulares porque en la práctica son polígonos complejos. La gran ventaja es que hoy en día disponemos de una ingente cantidad de productos cartográficos que nos ofrecen esos poligonos en varios formatos (e.g. shapefile shp).
+# La gran mayoría de las veces los parches de hábitat en un paisaje no se pueden representar como áreas circulares porque en la práctica son polígonos complejos. La gran ventaja es que hoy en día disponemos de una ingente cantidad de productos cartográficos que nos ofrecen esos polígonos en varios formatos (e.g. shapefile shp).
 
 # Vamos a usar el paquete lcnonnect para importar y trabajar con esos polígonos.
 
@@ -38,7 +38,7 @@ land1 <- patch_imp(land, metric="IIC")
 class(land1)
 # Esto produce un objeto de la clase ‘pimp’, que quiere decir "patch importance plot"
 
-# El valor de "pimp" está indicando el porcentaje de reducción de la métrica de conectividad que la pérdida de un parche especiífico representa en el paisaje total. 
+# El valor de "pimp" está indicando el porcentaje de reducción de la métrica de conectividad que la pérdida de un parche específico representa en el paisaje total. 
 
 # Los objetos de la clase pimp son muy útiles porque con ellos podemos graficar la contribución relativa de cada parche a la conectividad del paisaje
 plot(land1, main="Priorización de parche (%)")
