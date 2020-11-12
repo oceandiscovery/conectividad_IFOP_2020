@@ -13,11 +13,11 @@
 
 rm(list = ls()) # Limpiar todos los objetos y variables en el entorno de trabajo
 
-# Cargamos el paquete o libreria para hacer los análsis
+# Cargamos el paquete o librería para hacer los análisis
 library(MetaLandSim)
 
 # Necesitamos una base de datos con la siguiente información sobre los parches:
-# ID         - identificador númerico del parche
+# ID         - identificador numérico del parche
 # X          - coordenada o longitud decimal
 # Y          - coordenada o latitud decimal
 # Area       - tamaño del parche, en hectáreas.
@@ -72,7 +72,7 @@ patches <- rl1$nodes.characteristics
 # Esta base datos contiene la siguiente info.
 head(patches)
 
-# Luego creamos un vector para insertar los valores del IIC parcial (dIIC). Usamos una función personalizada para remover puntos. La versión original en el paquet MetaLandSim elimina una serie de parches de forma aleatoria. Esta versión adaptada elimina un parche específico (por ID), se llama removepoints.byID.
+# Luego creamos un vector para insertar los valores del IIC parcial (dIIC). Usamos una función personalizada para remover puntos. La versión original en el paquete MetaLandSim elimina una serie de parches de forma aleatoria. Esta versión adaptada elimina un parche específico (por ID), se llama removepoints.byID.
 
 dIIC <- rep(NA, 50)
 
@@ -116,10 +116,10 @@ removepoints.byID <-
 
 # Entonces calculamos el dIIC (conectividad parcial) para cada parche:
 
-# Usamos un loop para hacer el cálculo
+# Usamos un bucle para hacer el cálculo
 for (i in 1:50) {
-  rl2 <- rl1 #This is just no to change rl1
-  rl3 <- removepoints.byID(rl1, ID = i) #removing patch i
+  rl2 <- rl1 # This is just no to change rl1
+  rl3 <- removepoints.byID(rl1, ID = i) # removing patch i
   partial.IIC <- as.numeric(metrics.graph (rl = rl3, metric = "IIC"))
   dIIC[i] <-
     100 * ((full.IIC - partial.IIC) / full.IIC) #send the result to the vector
@@ -140,6 +140,3 @@ text(
   offset = 0.2,
   labels = round(dIIC, 2)
 )
-
-
-
