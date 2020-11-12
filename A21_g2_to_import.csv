@@ -1,0 +1,16 @@
+,V1,V2,weight
+1,Robinson Crusoe,Santa Clara,0.9
+2,Robinson Crusoe,Alejandro Selkirk,0.9
+3,Santa Clara,Alejandro Selkirk,0.7
+4,San Felix,San Ambrosio,0.7
+5,San Felix,González,0.9
+6,San Ambrosio,González,0.6
+7,Rapa Nui,Salas y Gómez,0.8
+8,Salas y Gómez,Pitcairn,0.4
+9,Rapa Nui,Pitcairn,0.5
+10,Rapa Nui,Rapa Nui,0.7
+11,Robinson Crusoe,San Ambrosio,0.6
+12,Robinson Crusoe,San Felix,0.4
+13,Alejandro Selkirk,San Ambrosio,0.5
+14,Alejandro Selkirk,San Felix,0.4
+15,Alejandro Selkirk,Salas y Gómez,0.5
