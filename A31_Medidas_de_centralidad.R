@@ -65,9 +65,11 @@ get.data.frame(g4, what = 'vertices')
 
 
 ##### Crear un objeto dataframe con todas las medidas de centralidad calculadas ####
-# Podemos guardarla como un objeto, por si fuese necesario exportar la lista mas delante o usarla, lo mismo podemos hacer con la lista de enlaces.
+# Podemos guardarla como un objeto, por si fuese necesario exportar la lista para su uso mas adelante, lo mismo podemos hacer con la lista de enlaces.
 g4.cent.measures.nodes <- get.data.frame(g4, what = 'vertices')
 g4.cent.measures.edges <- get.data.frame(g4, what = 'edges')
+
+write.csv(g4.cent.measures.nodes, "A41_g4.cent.measures.nodes.csv", row.names = F)
 
 ##### Figura destacando el valor de degree en los nodos ####
 # Y ahora crearemos una visualización del grafo g4 usando ggraph donde destacaremos la centralidad de los nodos basada en degree
