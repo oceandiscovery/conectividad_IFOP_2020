@@ -12,16 +12,6 @@ rm(list = ls()) # Limpiar todos los objetos y variables en el entorno de trabajo
 library(igraph) # Cargar la librería igraph
 library(readxl)
 library(ggraph)
-library(snahelper)
-
-# ------------------ #
-#Normalize function
-# ------------------ #
-normalize_fun <- function(x) {
-  a <- min(x)
-  b <- max(x)
-  (x - a)/(b - a)
-}
 
 g4.data <-
   read_excel("A31_caletas.xlsx") # Leer una matriz de adyacencia almacenada en un archivo MS Excel
@@ -219,3 +209,4 @@ plot(lpc,
      xlim                = c(-1, 1),
      asp                 = 0
 )
+
