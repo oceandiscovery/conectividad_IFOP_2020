@@ -2,6 +2,8 @@
 
 # Actualizado a Noviembre 25 de 2020
 
+# Actualizado a Noviembre 25 de 2020
+
 Repositorio de scripts en R y bases de datos para su uso durante las sesiones prácticas del curso de conectividad IFOP 2020
 
 Título del Curso: IFOP - Uso de la teoría de grafos en el análisis de conectividad larval de poblaciones marinas
