@@ -1,4 +1,4 @@
-# Curso Conectividad Marina - IFOP 2020
+# Curso Conectividad Marina - IFOP Noviembre 2020
 
 # Actualizado a Noviembre 25 de 2020
 
