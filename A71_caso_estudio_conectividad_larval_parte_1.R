@@ -37,6 +37,8 @@ summary(data_20_PLD_DVM)
 # Si queremos podemos filtrar la base de datos, por ejemplo concentremonos en las larvas (partículas) que se asientan o reclutan en el invierno austral
 data_ready <- filter(data_20_PLD_DVM, season_end == "Q3 JUN-AUG")
 
+saveRDS(data_ready, "A72_data_PLD_20_DVM_WINTER.rds")
+
 ##### CREANDO LAS MATRICES ####
 # Ahora extraemos la matriz de conectividad larval realizada.
 
@@ -54,9 +56,9 @@ conmatrix = matrix(rep(0, size.matrix.zones * size.matrix.zones),
 
 # Con este bucle llenamos la matriz con la información
 for (ii in 1:nrow(data_ready)) {
-  q <- as.numeric(data_ready$zone_ini[ii])
-  w <- as.numeric(data_ready$zone_end[ii])
-  conmatrix[q, w] <- conmatrix[w, q] + data_ready$super_particle_size[ii]
+  w <- as.numeric(data_ready$zone_ini[ii])
+  q <- as.numeric(data_ready$zone_end[ii])
+  conmatrix[q, w] <- conmatrix[q, w] + data_ready$super_particle_size[ii]
 }
 
 # super_particle_size determina si la partícula representa una larval individual o una cohorte de larvas con un tamaño determinado y conocido. 
@@ -64,11 +66,23 @@ for (ii in 1:nrow(data_ready)) {
 # La siguiente línea es con propósitos de backup
 cmat.rea <- conmatrix
 
+colSums(cmat.rea)
+
+# La suma de las columnas 2 y 405 es 0, puede deberse a muchas causas pero una muy probable es que tenga que ver con los problemas de condiciones de frontera del dominio.
+
+# La siguiente línea recorta la matriz para excluir los bordes conflictivos
+cmat.rea <- cmat.rea[3:404, 3:404]
+
+# Tenemos una matriz de 402 x 402
+dim(cmat.rea)
+
 # Convirtiendo la matriz realizada en una matriz potencial
-cmat.pot <- cmat.rea / t(matrix(rep(colSums(cmat.rea),size.matrix.zones),nrow = size.matrix.zones, ncol = size.matrix.zones))
+cmat.pot <- cmat.rea / t(matrix(rep(colSums(cmat.rea),dim(cmat.rea)[1]),nrow = dim(cmat.rea)[1], ncol = dim(cmat.rea)[1]))
 
 # Comprobemos que todas las columnas sumen 1. Es como teóricamente debería ser pero en la práctica podemos encontrar algunos casos especiales.
 colSums(cmat.pot)
+
+saveRDS(cmat.pot, "A72_potential_connectivity_matrix_from_PLD_20_DVM_WINTER.rds")
 
 #### Representaciones tipo "mapa de calor" de las matrices de conectividad con zonas ####
 library(ggplot2)
@@ -158,9 +172,9 @@ realized.connectivity.matrix <-
 
 # Como en el bloque anterior llenamos la matriz usando un bucle
 for (ii in 1:nrow(realized.connectivity.df)) {
-  q <- as.numeric(realized.connectivity.df$lat_ini_lev[ii])
-  w <- as.numeric(realized.connectivity.df$lat_end_lev[ii])
-  realized.connectivity.matrix[q, w] <- realized.connectivity.matrix[w, q] + realized.connectivity.df$weigth[ii]
+  w <- as.numeric(realized.connectivity.df$lat_ini_lev[ii])
+  q <- as.numeric(realized.connectivity.df$lat_end_lev[ii])
+  realized.connectivity.matrix[q, w] <- realized.connectivity.matrix[q, w] + realized.connectivity.df$weigth[ii]
 }
 
 # Convertimos la matriz realizada en una matriz potencial y verificamos la suma de las columnas

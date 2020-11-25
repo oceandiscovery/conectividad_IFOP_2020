@@ -43,15 +43,15 @@ data.attributes <- data.frame(name = as.character(1:405),
 data.relations <- ddply(data_ready, c("zone_ini", "zone_end"), summarise,
                                   weight = sum(super_particle_size, na.rm=TRUE))
 
-### Creación de un grafo ponderado usando la matriz realizada ####
+### Creación de un grafo ponderado usando la el dataframe correspondiente a la matriz realizada ####
 g1 <- graph_from_data_frame(data.relations, directed=TRUE, vertices=data.attributes)
 
 ### Manipulando grafos y convirtiendo a otros formatos y viceversa ####
-# Vamos a quedarnos con un grafo mas pequeño que solo contenga las zonas 221 a 405
+# Vamos a quedarnos con un grafo mas pequeño que solo contenga las zonas 221 a 404
 g2 <- induced.subgraph(g1,
-                        which(V(g1)$id >= 221))
+                        which(V(g1)$id >= 221 & V(g1)$id < 405))
 
-# Volvamos este grafo una matriz de adyacencia, aedmás extraigamos la fuerza de la conexión, es decir la ponderación, que ya sabemos que son el número de larvas que se intercambian entre celdas
+# Volvamos este grafo una matriz de adyacencia, además extraigamos la fuerza de la conexión, es decir la ponderación, que ya sabemos que son el número de larvas que se intercambian entre celdas
 con.mat.rea.2 <- as_adjacency_matrix(g2, attr="weight")
 
 # Pero nos interesa mas tener una matriz realizada convencional
@@ -72,9 +72,9 @@ head(E(g3)$weight)
 
 g3
 # Pero hemos perdido las posiciones y los nombres ¿Qué hacemos?
-V(g3)$name <- data.attributes$name[221:405]
-V(g3)$x <- data.attributes$x[221:405]
-V(g3)$y <- data.attributes$y[221:405]
+V(g3)$name <- data.attributes$name[221:404]
+V(g3)$x <- data.attributes$x[221:404]
+V(g3)$y <- data.attributes$y[221:404]
 
 g3
 
@@ -159,6 +159,7 @@ gs <- lapply(gs, function(x) {
 })
 
 g <- gs[[1]]
+saveRDS(g, "A81_grafo_g.rds")
 
 ##### Grafo geo-posicionado ####
 library(mapdata)
@@ -243,12 +244,12 @@ ggraph(g,
   mapcoords +
   maptheme +
   theme(
-    legend.position = "left",
-    legend.text = element_text(size = 12, lineheight = 0.5),
+    legend.position = legend_pos,
+    legend.text = element_text(size = 8, lineheight = 0.5),
     legend.key.height = unit(0.5, "cm")
   )
 
-# Tema de discusión: ¿Qué zonas o latitudes podríamos considerar prioritarias en cuestiones de gestión de los recursos a partir de este grafo? Recordad que estamos refiriendonos a spp. que tengan un PLD == 20 y reclutamiento en invierno austral?
+# Tema de discusión: ¿Qué zonas o latitudes podríamos considerar prioritarias en cuestiones de gestión de los recursos a partir de este grafo? Recordad que estamos refiriéndonos a spp. que tengan un PLD == 20 y reclutamiento en invierno austral?
 
 ##### Un grafo con la centralidad de intermediación (betweenness) para los nodos y arcos #####
 g <- gs[[1]]
@@ -289,8 +290,8 @@ ggraph(g,
   mapcoords +
   maptheme +
   theme(
-    legend.position = "left",
-    legend.text = element_text(size = 12, lineheight = 0.5),
+    legend.position = legend_pos,
+    legend.text = element_text(size = 8, lineheight = 0.5),
     legend.key.height = unit(0.5, "cm")
   )
 

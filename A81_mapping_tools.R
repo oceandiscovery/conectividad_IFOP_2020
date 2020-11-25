@@ -107,9 +107,6 @@ mytext_2 <- paste(
 ) %>%
   lapply(htmltools::HTML)
 
-### http://leaflet-extras.github.io/leaflet-providers/preview/index.html
-
-
 
 ##### Organizando el grafo para representarlo en leafleft ####
 library(sp)
@@ -215,3 +212,8 @@ addPolylines(data = edges,
   hideGroup(c("names", "arcs"))
 
 mg
+
+
+### http://leaflet-extras.github.io/leaflet-providers/preview/index.html
+
+
