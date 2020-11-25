@@ -34,10 +34,10 @@ data_20_PLD_DVM$season_end <- as.factor(data_20_PLD_DVM$season_end)
 # Un nuevo resumen
 summary(data_20_PLD_DVM)
 
-# Si queremos podemos filtrar la base de datos, por ejemplo concentremonos en las larvas (partículas) que se asientan o reclutan en el invierno austral
+# Si queremos podemos filtrar la base de datos, por ejemplo concentrémonos en las larvas (partículas) que se asientan o reclutan en el invierno austral
 data_ready <- filter(data_20_PLD_DVM, season_end == "Q3 JUN-AUG")
 
-saveRDS(data_ready, "A72_data_PLD_20_DVM_WINTER.rds")
+# saveRDS(data_ready, "A72_data_PLD_20_DVM_WINTER.rds")
 
 ##### CREANDO LAS MATRICES ####
 # Ahora extraemos la matriz de conectividad larval realizada.
@@ -82,7 +82,7 @@ cmat.pot <- cmat.rea / t(matrix(rep(colSums(cmat.rea),dim(cmat.rea)[1]),nrow = d
 # Comprobemos que todas las columnas sumen 1. Es como teóricamente debería ser pero en la práctica podemos encontrar algunos casos especiales.
 colSums(cmat.pot)
 
-saveRDS(cmat.pot, "A72_potential_connectivity_matrix_from_PLD_20_DVM_WINTER.rds")
+# saveRDS(cmat.pot, "A72_potential_connectivity_matrix_from_PLD_20_DVM_WINTER.rds")
 
 #### Representaciones tipo "mapa de calor" de las matrices de conectividad con zonas ####
 library(ggplot2)
